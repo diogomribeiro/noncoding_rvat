@@ -1,0 +1,4 @@
+## INPUT DATA
+# WGS data: SHAPEIT Phasing Protocol for 200k WGS (field 20279), available on UKB RAP (note: in practice used own copy in PhasingWGS200k from BCF files, but these are identical to VCF files except for format)
+
+# Follow readme files in jobs_readme for procedure to reproduce these analyses
