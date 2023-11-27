@@ -1,46 +1,5 @@
-
-library(data.table)
+# Adapted from qqman library https://github.com/stephenturner/qqman (Stephen Turner)
 library(qqman)
-
-# png("~/manhattanABC.png",1800,350)
-# png("~/manhattanCRD.png",1800,350)
-# png("~/manhattanHIC.png",1800,350)
-# png("~/manhattanNC.png",1800,350)
-png("~/manhattanCDS.png",1800,350)
-
-# Gene info
-coordData = fread("/home/dribeiro/git/burdenNC/src/saige/annotations/gencode_coordinates.tsv", header = F)
-coordData$tss = coordData$V2
-coordData[V4 == "-"]$tss = coordData[V4 == "-"]$V3
-
-## Process burden results
-# burdenData = fread("/home/dribeiro/burdenNC/data/results/200k/ABC_SKATO_process_all.tsv.gz")
-# burdenData = fread("/home/dribeiro/burdenNC/data/results/200k/CRD_SKATO_process_all.tsv.gz")
-# burdenData = fread("/home/dribeiro/burdenNC/data/results/200k/JAVIERRE_SKATO_process_all.tsv.gz")
-# burdenData = fread("/home/dribeiro/burdenNC/data/results/200k/NC_SKATO_process_all.tsv.gz")
-burdenData = fread("/home/dribeiro/git/burdenNC/src/regenie/analysis/200k/CDS_SKATO_process_all.tsv.gz")
-
-mergedData = merge(burdenData, coordData, by.x = "GENE", by.y = "V5")
-
-# downsample non-significant
-nonSign = mergedData[PVAL > 0.05]
-nonSign = nonSign[sample(nrow(nonSign) * 0.10)]
-sign = mergedData[PVAL < 0.05]
-mergedData = rbind(nonSign, sign)
-mergedData$chro = as.numeric(data.table(unlist(lapply(mergedData$V1, function(x) unlist(strsplit(x,"chr"))[2])))$V1)
-mergedData = mergedData[order(chro,tss)]
-
-mergedData[PVAL < 1e-50]$PVAL = 1e-50
-# manhattan(mergedData, chr="chro",bp="tss",snp="GENENAME",p="PVAL", col = c("#bae4b3", "#006d2c"), annotatePval = 1e-9, ylim = c(0,36), suggestiveline = 5.062) # ABC: green
-# manhattan(mergedData, chr="chro",bp="tss",snp="GENENAME",p="PVAL", col = c("#bcbddc", "#756bb1"), annotatePval = 1e-9, ylim = c(0,51), suggestiveline = 4.434) # CRD: purple
-# manhattan(mergedData, chr="chro",bp="tss",snp="GENENAME",p="PVAL", col = c("#fcae91", "#a50f15"), annotatePval = 1e-9, ylim = c(0,51), suggestiveline = 4.217) # HIC: red
-# manhattan(mergedData, chr="chro",bp="tss",snp="GENENAME",p="PVAL", col = c("#9ecae1", "#2171b5"), annotatePval = 1e-9, ylim = c(0,51), suggestiveline = 4.360) # NC: blue
-manhattan(mergedData, chr="chro",bp="tss",snp="GENENAME",p="PVAL", col = c("#d9d9d9", "#636363"), annotatePval = 1e-9, ylim = c(0,51), suggestiveline = 4.146) # CDS: grey
-
-dev.off()
-
-
-### RUN THIS BEFOREHAND, JUST CHANGED THE GENE LABEL SIZE, AND PVALUE LINES
 library(calibrate)
 manhattan <- function(x, chr="CHR", bp="BP", p="P", snp="SNP", 
                       col=c("gray10", "gray60"), chrlabs=NULL,
@@ -244,4 +203,5 @@ manhattan <- function(x, chr="CHR", bp="BP", p="P", snp="SNP",
   }  
   par(xpd = FALSE)
 }
+
 

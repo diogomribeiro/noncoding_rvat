@@ -60,6 +60,16 @@ ggplot(data = mergedNC[-log10(PVAL.y) > 3], aes(-log10(PVAL.x), -log10(PVAL.y)))
 
 dev.off()
 
+
+###########
+# Shuffled NC
+###########
+mergedSH = merge(ncData30k,shuffle137k,by=c("GENE","TRAIT"), all.x = T, all.y = T)
+paste(nrow(unique(mergedSH[is.na(PVAL.x)])), "NC gene-traits not evaluated in 30k")
+paste(nrow(unique(mergedSH[is.na(PVAL.y)])), "NC gene-traits not evaluated in 137k")
+paste(nrow(unique(mergedSH[!is.na(PVAL.x)][!is.na(PVAL.y)])),"NC gene-traits compared")
+mergedSH = mergedSH[!is.na(PVAL.x)][!is.na(PVAL.y)]
+
 ###########
 # P<0.05 replication
 ###########

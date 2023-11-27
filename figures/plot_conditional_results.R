@@ -38,7 +38,7 @@ png("fig4c_conditional_nc.png",750,700)
 # Plot
 test = cor.test(mergedData$LOG10P.x,mergedData$LOG10P.y, method = "spearman")
 text = paste("Spearman R:",round(test$estimate,2), "P-value",format.pval(test$p.value,2))
-ggplot(data = mergedData[LOG10P.y > 1], aes(LOG10P.x, LOG10P.y)) + 
+ggplot(data = mergedData[LOG10P.y > 1 | LOG10P.x > 1], aes(LOG10P.x, LOG10P.y)) + 
   geom_point() +
   # geom_smooth(method = "lm") + 
   geom_abline(slope = 1, intercept = 0, color = "grey", linetype = "dashed", size = 2) +

@@ -1,0 +1,8 @@
+replication	percentage	V3	annotation	pval_cutoff
+direct_replication	54.2253521126761	ABC.F0.05	ABC	F0
+direct_replication	91.3900414937759	CDS.F0.05	CDS	F0
+direct_replication	34.1176470588235	CONTROL.F0.05	CONTROL	F0
+direct_replication	45.5242966751918	CRD.F0.05	CRD	F0
+direct_replication	28.5575048732943	JAVIERRE.F0.05	HIC	F0
+direct_replication	31.7923186344239	NC.F0.05	NC	F0
+direct_replication	3.41394025604552	NC_shuffle.F0.05	EXPEC.	F0
