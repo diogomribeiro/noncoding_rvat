@@ -22,8 +22,8 @@ g1 = ggplot(data = mergedData, aes(LOG10P.x, LOG10P.y)) +
   # geom_smooth(method = "lm") +
   geom_abline(slope = 1, intercept = 0, color = "grey", linetype = "dashed", size = 2) +
   # annotate("text", x = Inf, y = Inf, label = text, hjust = 1.2, vjust = 1.5, size = 8, fontface = "bold"  ) +
-  ylab("-Conditional P (-log10)") +
-  xlab("No conditional P (-log10)") +
+  ylab("Conditional p-value (-log10)") +
+  xlab("No conditional p-value (-log10)") +
   labs(tag = "a") + 
   theme_minimal() + 
   theme(text = element_text(size=36), legend.position = c(0.86,0.85),
@@ -45,8 +45,8 @@ g2 = ggplot(data = mergedData, aes(LOG10P.x, LOG10P.y)) +
   # geom_smooth(method = "lm") +
   geom_abline(slope = 1, intercept = 0, color = "grey", linetype = "dashed", size = 2) +
   # annotate("text", x = Inf, y = Inf, label = text, hjust = 1.2, vjust = 1.5, size = 8, fontface = "bold"  ) +
-  ylab("Conditional P (-log10)") +
-  xlab("No conditional P (-log10)") +
+  ylab("Conditional p-value (-log10)") +
+  xlab("No conditional p-value (-log10)") +
   labs(tag = "b") +
   theme_minimal() + 
   theme(text = element_text(size=36), legend.position = c(0.86,0.85),
