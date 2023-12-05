@@ -3,6 +3,8 @@ library(data.table)
 library(ggplot2)
 library(patchwork)
 
+png("~/git/noncoding_rvat/figures/png/variant_per_annot.png",1200,800)
+
 data1 = fread("zcat ~/burdenNC/data/annotations/ABC.CADD15.annotations.gz", header = F)
 data2 = fread("zcat ~/burdenNC/data/annotations/CRD.CADD15.annotations.gz", header = F)
 data3 = fread("zcat ~/burdenNC/data/annotations/JAVIERRE.CADD15.annotations.gz", header = F)
@@ -106,7 +108,6 @@ g5 = ggplot(data = freq[N < 2000], aes(N)) +
   )
 
 
-pdf("~/supp1.pdf",24,12)
 
 g1 + g2 + g3 + g4 + g5
 
